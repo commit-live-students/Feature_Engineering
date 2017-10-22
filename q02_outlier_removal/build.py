@@ -8,4 +8,10 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 
 # Write your code here:
-
+def outlier_removal(dataset):
+    for i in dataset.columns:
+        if dataset[i].dtypes == 'int64' or dataset[i].dtypes == 'float64':
+            th = dataset[i].quantile(0.95)
+            data = dataset[dataset[i]< th]
+            data = data[1:1306]
+    return data
