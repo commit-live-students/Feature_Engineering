@@ -27,6 +27,6 @@ def skewness_log(data):
 
 
 
-    return skew(df['GrLivArea']),skew(df['SalePrice'])
+    return skew(data['sk_GrLivArea']),skew(data['sk_SalePrice'])
 
 # Write code here:
