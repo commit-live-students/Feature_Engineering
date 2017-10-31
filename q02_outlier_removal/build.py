@@ -9,3 +9,7 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 # Write your code here:
 
+def outlier_removal(dataset):
+    df = dataset
+    df = df.drop(df[(df['MasVnrArea'] > 456) | (df['GrLivArea']>2466) | (df['SalePrice'] > 326100)].index)
+    return df
