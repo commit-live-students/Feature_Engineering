@@ -10,10 +10,14 @@ def outlier_removal(housing_data):
     df = housing_data
 
     q = df["MasVnrArea"].quantile(0.95)
-    df1 = df[df["MasVnrArea"] < q]
+    #housing_data = housing_data[housing_data["MasVnrArea"] < q]
     q1 = df["GrLivArea"].quantile(0.95)
-    df2 = df[df["GrLivArea"] < q1]
+    #housing_data = housing_data[housing_data["GrLivArea"] < q1]
     q2 = df["SalePrice"].quantile(0.95)
-    df3 = df[df["SalePrice"] < q2]
-    return df3
+    #df = housing_data[housing_data["SalePrice"] < q2]
+
+    df_out = df.drop(df[(df["MasVnrArea"] > q)|
+                        (df["GrLivArea"] > q1) |
+                        (df["SalePrice"] > q2)].index)
+    return df_out
 # Write your code here:
