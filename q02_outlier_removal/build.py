@@ -13,7 +13,7 @@ def outlier_removal(dataset):
     p = {}
     for col in dataset:
         if dataset[col].dtype == np.int or dataset[col].dtype == np.float:
-            p[col] = dataset[col].quantile(.9545)
+            p[col] = dataset[col].quantile(.953)
 
     for col, p3 in p.items():
         dataset = dataset[dataset[col] < p3]
