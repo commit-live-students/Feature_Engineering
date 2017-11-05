@@ -1,3 +1,4 @@
+# %load q04_encoding/build.py
 # Default imports
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
@@ -7,4 +8,8 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 
 # Write your code here:
+def encoding(df):
+    lablel_encoder = LabelEncoder()
+    df =pd.get_dummies(df, drop_first=True)
 
+    return df
