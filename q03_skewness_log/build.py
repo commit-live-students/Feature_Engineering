@@ -6,4 +6,10 @@ data = pd.read_csv('data/train.csv')
 
 
 # Write code here:
+def skewness_log(data):
+    data['GrLivArea1'] = np.log(data['GrLivArea'])
+    data['SalePrice1'] = np.log(data['SalePrice'])
+    skewed_val1 = skew(data['GrLivArea1'])
+    skewed_val2 = skew(data['SalePrice1'])
 
+    return skewed_val1,skewed_val2
