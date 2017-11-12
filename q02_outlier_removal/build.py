@@ -16,5 +16,5 @@ def outlier_removal(dataset):
     dataset = dataset.drop(dataset[(dataset['MasVnrArea']>q1)].index)
     dataset = dataset.drop(dataset[(dataset['GrLivArea']>q2)].index)
     dataset = dataset.drop(dataset[(dataset['SalePrice']>q3)].index)
-    print dataset.shape
+    #print dataset.shape
     return dataset
