@@ -10,6 +10,7 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 # Write your code here:
 
 def outlier_removal(housing_data):
-    housing_data.drop(housing_data[(housing_data['MasVnrArea']>456) |
+    housing_data.quantile(0.95)
+    a = housing_data.drop(housing_data[(housing_data['MasVnrArea']>456) |
             (housing_data['GrLivArea']>2466) | (housing_data['SalePrice']>326100.0)].index)
-    return housing_data
+    return a
