@@ -8,4 +8,9 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 
 # Write your code here:
-
+def imputation(housing_data):
+    housing_data['MasVnrArea'] = housing_data['MasVnrArea'].fillna(housing_data['MasVnrArea'].mean())
+    housing_data['GarageType']= housing_data['GarageType'].fillna(housing_data['GarageType'].mode()[0])
+    imp = housing_data[['MasVnrArea','GarageType']]
+    imp1 = housing_data[['LotShape','GrLivArea']]
+    return imp,imp1
