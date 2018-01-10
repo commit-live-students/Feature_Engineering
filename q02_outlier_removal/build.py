@@ -9,3 +9,15 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 # Write your code here:
 
+def outlier_removal(df):
+    vQuantile = df.quantile(q=0.952)
+    df = df.drop(df[(df['MasVnrArea']>vQuantile['MasVnrArea'])
+                    | (df['GrLivArea']>vQuantile['GrLivArea'])
+                    | (df['SalePrice']>vQuantile['SalePrice'])
+                    ].index)
+    return df
+
+# a = outlier_removal(housing_data)
+# print type(a)
+# print a.shape
+# print a.head()
