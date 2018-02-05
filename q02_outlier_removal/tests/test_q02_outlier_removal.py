@@ -19,11 +19,11 @@ class TestOutlier_removal(TestCase):
         self.assertEqual(args[3], None, "Expected default values do not match given default values")
 
         # Return data types
-    def test_dataframe(self):   
+    def test_dataframe(self):
         self.assertIsInstance(without_out, pd.core.frame.DataFrame,
                               "Expected data type for return value is `pandas DataFrame`, you are returning %s" % (
                                   type(without_out)))
 
         # Return value tests
     def test_return_shape(self):
-        self.assertEqual(without_out.shape, (1305, 5), "Return value shape does not match expected value")
+        self.assertEqual(without_out.shape, (1302, 5), "Return value shape does not match expected value")
