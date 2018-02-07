@@ -32,5 +32,3 @@ def outlier_removal (dataset):
 
 
     return df
-
-print outlier_removal(housing_data)
