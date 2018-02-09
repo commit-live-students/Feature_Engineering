@@ -8,4 +8,10 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 
 # Write your code here:
-
+def outlier_removal(df):
+    df2 = df.copy()
+    numeric_cols =df2.select_dtypes(include=['float64','int64'])
+    quant = numeric_cols.quantile(0.95)
+    for col in numeric_cols:
+        df2 = df2.drop(df2[df2[col]>quant[col]].index)
+    return df2
