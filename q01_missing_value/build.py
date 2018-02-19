@@ -8,4 +8,12 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 
 # Write your code here:
+def imputation(df):
+    df1=df.select_dtypes(include=['int','float'])
+    df2=df.select_dtypes(include=['object'])
+    df2['LotShape']=df2['LotShape'].fillna(df2['LotShape'].value_counts().index[0])
+    df2['GarageType']=df2['GarageType'].fillna(df2['GarageType'].value_counts().index[0])
+    for col in df1.columns:
+        df1[col] = df1[col].fillna(df1[col].mean())
 
+    return df1,df2
