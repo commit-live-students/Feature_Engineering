@@ -25,4 +25,4 @@ def imputation(dataset):
 
 
 
-#print imputation(dataset=housing_data)
+print imputation(dataset=housing_data)
