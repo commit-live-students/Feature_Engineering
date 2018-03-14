@@ -1,3 +1,4 @@
+
 # Default imports
 import pandas as pd
 
@@ -16,7 +17,9 @@ def outlier_removal (dataset):
 
     for colname in num_columns:
         quantile = quantile_95[ colname ]
+        print quantile
         df=df.drop(df[df[colname]>quantile].index)
         
 
     return df
+
