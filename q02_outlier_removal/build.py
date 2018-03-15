@@ -8,3 +8,8 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 
 # Write your code here:
+def outlier_removal(housing_data):
+    df = housing_data.copy()
+    filter1 = housing_data.quantile(0.95)
+    df = df.drop(df[(df['GrLivArea']>filter1['GrLivArea']) | (df['MasVnrArea']>filter1['MasVnrArea']) |  (df['SalePrice']>filter1['SalePrice'])].index)
+    return df
