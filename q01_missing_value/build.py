@@ -12,8 +12,7 @@ def imputation(housing_data):
     imp_mean.fit(housing_data[['MasVnrArea']])
     housing_data[['MasVnrArea']] = imp_mean.transform(housing_data[['MasVnrArea']])
 
-
     #Computing mode of the categorical variable
     housing_data[['GarageType']] = housing_data['GarageType'].fillna(housing_data['GarageType'].mode()[0])
 
-    return(housing_data[["MasVnrArea"]].head(),housing_data[["GarageType"]].head())
+    return(housing_data[["MasVnrArea"]],housing_data[["GarageType"]])
