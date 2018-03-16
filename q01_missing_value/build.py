@@ -22,3 +22,5 @@ def imputation(housing_data):
         df2[col] = df2[col].fillna(df2[col].mean())
 
     return df2[['MasVnrArea', 'GrLivArea', 'SalePrice']], df2[['LotShape','GarageType']]
+
+imputation(housing_data)
