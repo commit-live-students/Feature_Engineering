@@ -13,7 +13,10 @@ def encoding(df):
     # Impute NAN values of categorical data
     df[columnsToEncode[1]] = df[columnsToEncode[1]].fillna("None")
 
+    # LabelEncoding
     df[columnsToEncode[0]] = le.fit_transform(df[columnsToEncode[0]])
+
+    # BinaryEncoding
     df = pd.get_dummies(df, columns=[columnsToEncode[1]])
 
     return df
