@@ -22,7 +22,7 @@ def imputation(housing_data):
 
     # Impute NAN values of categorical data
     for col in cat_data.columns:
-        cat_data[col] = cat_data[col].value_counts().index.max()
+        cat_data[col] = cat_data[col].fillna("None")
 
     # Impute NAN values of numerical data
     for col in numeric_data.columns:
