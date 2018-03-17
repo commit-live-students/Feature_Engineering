@@ -1,16 +1,19 @@
 # Default imports
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder, LabelBinarizer
+from sklearn.preprocessing import LabelEncoder
 
 ny_housing = pd.read_csv('data/train.csv')
 housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 'SalePrice']]
 
-def encoding(data):
+def encoding(df):
 
-    lablel_encoder = LabelEncoder()
-    label_binarizer = LabelBinarizer()
-    data['LotShape'] = lablel_encoder.fit_transform(data['GarageType'])
-    #x = label_binarizer.fit_transform([])
-    data = pd.get_dummies(data, columns=["LotShape"])
+    columnsToEncode = list(df.select_dtypes(include=['category','object']))
+    le = LabelEncoder()
 
-    return data
+    # Impute NAN values of categorical data
+    df[columnsToEncode[1]] = df[columnsToEncode[1]].fillna("None")
+
+    df[columnsToEncode[0]] = le.fit_transform(df[columnsToEncode[0]])
+    df = pd.get_dummies(df, columns=[columnsToEncode[1]])
+
+    return df

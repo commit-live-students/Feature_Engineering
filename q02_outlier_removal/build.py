@@ -11,10 +11,6 @@ def outlier_removal(data):
 
     df = data.copy()
     #my code
-
-    # # for col in ('MasVnrArea', 'GrLivArea', 'SalePrice'):
-    # #     df[col] = df[col].fillna(df[col].mean())
-    #
     # quantile_value = df.quantile(0.95, axis = 0)
     # print(quantile_value[0])
     #
