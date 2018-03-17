@@ -12,15 +12,20 @@ def imputation(housing_data):
 
     df2 = housing_data.copy()
 
-    lot_shape_imputer = df2['LotShape'].value_counts().index.max()
-    garage_type_imputer = df2['GarageType'].value_counts().index.max()
+    # Separate numerical data from original data
+    numeric_feature = [a for a in range(len(df2.dtypes)) if df2.dtypes[a] in ['int64','float64']]
+    numeric_data = df2.iloc[:,numeric_feature]
 
-    df2['LotShape'] = df2['LotShape'].fillna(lot_shape_imputer)
-    df2['GarageType'] = df2['GarageType'].fillna(garage_type_imputer)
+    # Separate categorical data from original data
+    cat_feature = [a for a in range(len(df2.dtypes)) if df2.dtypes[a] in ['object']]
+    cat_data = df2.iloc[:,cat_feature]
 
-    for col in ('MasVnrArea', 'GrLivArea', 'SalePrice'):
-        df2[col] = df2[col].fillna(df2[col].mean())
+    # Impute NAN values of categorical data
+    for col in cat_data.columns:
+        cat_data[col] = cat_data[col].value_counts().index.max()
 
-    return df2[['MasVnrArea', 'GrLivArea', 'SalePrice']], df2[['LotShape','GarageType']]
+    # Impute NAN values of numerical data
+    for col in numeric_data.columns:
+        numeric_data[col] = numeric_data[col].fillna(numeric_data[col].mean())
 
-imputation(housing_data)
+    return numeric_data, cat_data
