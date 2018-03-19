@@ -8,3 +8,11 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 
 # Write your code here:
+def outlier_removal(dataset):
+    qual_vals = dataset.quantile(0.95)
+
+    dataset =dataset.drop(dataset[dataset['MasVnrArea'] > qual_vals[0]].index)
+    dataset= dataset.drop(dataset[dataset['GrLivArea'] > qual_vals[1]].index)
+    dataset= dataset.drop(dataset[dataset['SalePrice'] > qual_vals[2]].index)
+
+    return dataset
