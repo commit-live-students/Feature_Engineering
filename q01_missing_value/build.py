@@ -9,7 +9,6 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 # Write your code here:
 def imputation(dataset):
-    housing_data.MasVnrArea = housing_data.MasVnrArea.fillna(housing_data.mean(),inplace=True)
-
-    housing_data.GarageType = housing_data.GarageType.fillna(housing_data.GarageType.value_counts().index[0],inplace=True)
-    return housing_data.MasVnrArea,housing_data.GarageType
+    housing_data[['MasVnrArea']] = housing_data[['MasVnrArea']].fillna(housing_data.mean(), inplace=True)
+    housing_data[['GarageType']] = housing_data[['GarageType']].apply(lambda x: x.fillna(x.value_counts().index[0]))
+    return housing_data[['MasVnrArea']], housing_data[['GarageType']]
