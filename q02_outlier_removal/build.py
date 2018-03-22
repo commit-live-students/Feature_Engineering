@@ -12,3 +12,5 @@ def outlier_removal(housing_data):
     housing_data = housing_data.drop(housing_data[housing_data.GrLivArea > q[1]].index)
     housing_data = housing_data.drop(housing_data[housing_data.SalePrice > q[2]].index)
     return(housing_data)
+
+print(outlier_removal(housing_data))
