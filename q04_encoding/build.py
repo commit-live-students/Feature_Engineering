@@ -9,7 +9,4 @@ def encoding(housing_data):
     housing_data['LotShape'] = le.fit_transform(housing_data['LotShape'])
     housing_data= pd.get_dummies(housing_data, columns=["GarageType"])
     housing_data["count"] = 1
-
     return housing_data
-
-print(encoding(housing_data))
