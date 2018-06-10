@@ -1,5 +1,7 @@
+# %load q02_outlier_removal/build.py
 # Default imports
 import pandas as pd
+import numpy as np
 
 # Data
 ny_housing = pd.read_csv('data/train.csv')
@@ -8,3 +10,20 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 
 # Write your code here:
+
+def outlier_removal(df):
+    df_new=df
+    #print(df_new.shape)
+    df=df.drop(df[(df['GrLivArea']>df['GrLivArea'].quantile(0.95)) | (df['MasVnrArea']>df['MasVnrArea'].quantile(0.95)) | (df['SalePrice']>df['SalePrice'].quantile(0.95))].index)
+    return (df)
+
+
+#housing_new=outlier_removal(housing_data)
+#housing_new.shape
+
+
+    
+
+    
+
+
