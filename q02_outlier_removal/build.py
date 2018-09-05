@@ -1,22 +1,22 @@
 # Default imports
 import pandas as pd
-import numpy as np
+#import numpy as np
 # Data
 ny_housing = pd.read_csv('data/train.csv')
 # Selecting 4 most relevant variables from the dataset fot the Cleaning and Preprocessing.
-housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 'SalePrice']]
+housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 'SalePrice']]                 
 
 
 # Write your code here:
 def outlier_removal(datasets):
-    df = datasets.copy()
-    num_cols = df.select_dtypes(include=['float64', 'int64'])
-    quantile_95 = num_cols.quantile(0.95)
-    for colu in num_cols:
-        quantile = quantile_95[colu]
-        print quantile
-        df=df.drop(df[df[colu]>quantile].index)
-    return df.shape
+    df2 = datasets.copy()
+    numeric_cols =df2.select_dtypes(include=['float64','int64'])
+    quant = numeric_cols.quantile(0.952)
+    for col in numeric_cols:
+        df2 = df2.drop(df2[df2[col]>quant[col]].index)
+    return df2
     #return col
+(outlier_removal(housing_data))
+#housing_data[['MasVnrArea', 'GrLivArea']] > P[1]
 
-print outlier_removal(housing_data)
+
