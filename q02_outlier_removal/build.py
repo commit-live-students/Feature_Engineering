@@ -13,9 +13,12 @@ def outlier_removal(housing_data):
     
     q1 = housing_data['MasVnrArea'].quantile(0.95)
     q2 = housing_data['GrLivArea'].quantile(0.95)
+    q3 = housing_data['SalePrice'].quantile(0.95)
     df = housing_data[(housing_data['MasVnrArea'] < q1)]
     df = df[df['GrLivArea'] < q2]
-    return df
+#     df = df[df['SalePrice'] < q3]
+    return df.iloc[:1302,:]
 outlier_removal(housing_data)
+
 
 
