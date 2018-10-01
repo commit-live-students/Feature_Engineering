@@ -9,16 +9,20 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 
 # Write your code here:
-def outlier_removal(housing_data):
-    
-    q1 = housing_data['MasVnrArea'].quantile(0.95)
-    q2 = housing_data['GrLivArea'].quantile(0.95)
-    q3 = housing_data['SalePrice'].quantile(0.95)
-    df = housing_data[(housing_data['MasVnrArea'] < q1)]
-    df = df[df['GrLivArea'] < q2]
-#     df = df[df['SalePrice'] < q3]
-    return df.iloc[:1302,:]
-outlier_removal(housing_data)
+def outlier_removal (dataset):
+    df= dataset.copy()
+    num_columns =df.select_dtypes(include=['float64','int64'])
+
+    quantile_95= num_columns.quantile(0.95)
+
+    for colname in num_columns:
+        quantile = quantile_95[ colname ]
+        df=df.drop(df[df[colname]>quantile].index)
+        
+
+    return df
+# outlier_removal(housing_data)
+
 
 
 
