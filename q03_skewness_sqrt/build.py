@@ -22,9 +22,10 @@ def skewness_sqrt(ny_housing):
     skew1=s1.skew()
     skew2=s2.skew()
     
-    return 0.59364,0.94218
+    return skew2,skew1
 
 c= skewness_sqrt(ny_housing)
 c
+
 
 
