@@ -10,11 +10,12 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 # Write your code here:
 
-def outlier_removal(dataset = housing_data):
-    for col in ['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 'SalePrice']:
-        a = dataset[dataset[col] < dataset[col].quantile(0.897)]
-        return a
+def outlier_removal(df):
+    a = dict(df.quantile(.95))
+    for item in a:
+        df = df.drop(df[df[item] > a[item]].index)
+    return df
+    
         
     
-
 
