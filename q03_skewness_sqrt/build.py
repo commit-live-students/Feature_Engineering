@@ -1,3 +1,4 @@
+# %load q03_skewness_sqrt/build.py
 # Default imports
 from scipy.stats import skew
 import pandas as pd
@@ -7,4 +8,14 @@ ny_housing = pd.read_csv('data/train.csv')
 
 
 # Write your Solution Here:
+def skewness_sqrt(ny_housing):
+    skew_val1 = skew(np.sqrt(ny_housing['SalePrice']))
+    skew_val2 = skew(np.sqrt(ny_housing['GrLivArea']))
+    return skew_val2, skew_val1
+
+skewness_sqrt(ny_housing)
+
+
+
+
 
