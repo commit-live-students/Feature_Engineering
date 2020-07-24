@@ -7,4 +7,9 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 
 # Write your code here:
-
+def encoding(dataset):
+    LE = LabelEncoder()
+    housing_data['LotShape'] = LE.fit_transform(housing_data['LotShape'])
+    df =  pd.get_dummies(housing_data[['GarageType']])
+    df = housing_data.join(df)
+    return df
