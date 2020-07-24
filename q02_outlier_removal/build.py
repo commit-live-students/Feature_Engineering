@@ -1,3 +1,4 @@
+# %load q02_outlier_removal/build.py
 # Default imports
 import pandas as pd
 
@@ -8,3 +9,10 @@ housing_data = ny_housing[['MasVnrArea', 'GrLivArea', 'LotShape', 'GarageType', 
 
 
 # Write your code here:
+def outlier_removal(df):
+    quantiles = df.quantile(q=0.95,axis=0)
+    for col in quantiles.index:
+        df[col] = df.drop(df[(df[col]>quantiles[col])].index, inplace=True)
+    return df
+
+
